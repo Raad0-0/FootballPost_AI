@@ -24,6 +24,19 @@ from app.services.scheduler import start_scheduler, stop_scheduler
 async def lifespan(app: FastAPI):
     """Application lifespan handler: initialises DB and starts background scheduler."""
     init_db()
+    # Auto-seed initial admin and workspaces if database is fresh
+    try:
+        from app.db.database import SessionLocal
+        from app.db.models import User
+        from seed import seed_database
+
+        db = SessionLocal()
+        if not db.query(User).first():
+            seed_database()
+        db.close()
+    except Exception:
+        pass
+
     start_scheduler()
     yield
     stop_scheduler()
