@@ -38,12 +38,6 @@ Follow these simple steps to run the backend and test all features yourself usin
 
 ### 1. Prerequisites & Setup
 
-Open PowerShell in the project directory:
-
-```powershell
-cd "c:\Users\raada\OneDrive\Documents\sports post assistant\backend"
-```
-
 Install requirements (if not already installed):
 ```powershell
 pip install -r requirements.txt
@@ -65,13 +59,13 @@ python seed.py
 
 #### Terminal 1 — Backend (FastAPI):
 ```powershell
-cd "c:\Users\raada\OneDrive\Documents\sports post assistant\backend"
+cd backend
 python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
 #### Terminal 2 — Frontend (React + Vite):
 ```powershell
-cd "c:\Users\raada\OneDrive\Documents\sports post assistant\frontend"
+cd frontend
 npm run dev
 ```
 
