@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  clubpost:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: clubpost-app
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=production-secret-key-change-me
+      - DATABASE_URL=sqlite:///./clubpost.db
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - FOOTBALL_DATA_API_KEY=${FOOTBALL_DATA_API_KEY:-}
+      - FOOTBALL_PROVIDER=${FOOTBALL_PROVIDER:-auto}
+      - CORS_ORIGINS=*
+    volumes:
+      - clubpost_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  clubpost_data:
